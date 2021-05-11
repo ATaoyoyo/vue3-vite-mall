@@ -5,7 +5,7 @@ import store from './store'
 
 const app = createApp(App)
 
-console.log(App);
+import { Button, Icon, Swipe, SwipeItem } from 'vant'
 
 app.config.globalProperties.$filter = {
   prefix(url) {
@@ -15,8 +15,10 @@ app.config.globalProperties.$filter = {
       url = 'http://backend-api-01.newbee.ltd${url}'
       return url
     }
-  }
+  },
 }
+
+app.use(Button).use(Icon).use(Swipe).use(SwipeItem)
 
 app.use(router)
 app.use(store)

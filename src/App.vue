@@ -1,11 +1,9 @@
 <template>
-
-  <router-view class="router-view" v-slot="{Component}">
+  <router-view class="router-view" v-slot="{ Component }">
     <transition :name="transitionName">
-      <component :is="Component"/>
+      <component :is="Component" />
     </transition>
   </router-view>
-
 </template>
 
 <script>
@@ -34,12 +32,13 @@ export default {
     })
 
     return { ...toRefs(state) }
-  }
+  },
 }
 </script>
 
 <style lang="less">
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100%;
