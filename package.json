@@ -1,0 +1,31 @@
+{
+  "name": "vite-project",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "commit": "git-cz"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "vant": "^2.12.17",
+    "vue": "^3.0.5",
+    "vue-router": "4",
+    "vuex": "^4.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.2.2",
+    "@vue/compiler-sfc": "^3.0.5",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
+    "less": "^4.1.1",
+    "less-loader": "^8.1.1",
+    "vite": "^2.2.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
+  }
+}
