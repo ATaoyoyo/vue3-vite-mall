@@ -10,9 +10,7 @@
         山河无恙，人间皆安
       </router-link>
     </div>
-    <router-link tag="a" class="Header__login" to="../../page/login"
-      ><span>登陆</span></router-link
-    >
+    <router-link tag="a" class="Header__login" to="../../page/login"><span>登陆</span></router-link>
   </div>
 </template>
 
@@ -28,12 +26,17 @@ export default {
 
 <style lang="less" scoped>
 .Header {
+  position: fixed;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 5px 0;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 35px;
   background: #1baeae;
+  z-index: 99;
 
   &__menu {
     display: flex;
@@ -50,7 +53,7 @@ export default {
     justify-content: space-around;
     align-items: center;
     margin: 0 10px;
-    padding: 0 10px;
+    padding: 5px 10px;
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.7);
 
