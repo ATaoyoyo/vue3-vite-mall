@@ -20,6 +20,7 @@
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
     "less": "^4.1.1",
+    "postcss-px-to-viewport": "^1.1.1",
     "prettier": "^2.3.0",
     "vite": "^2.2.3",
     "vite-plugin-style-import": "^0.10.0"

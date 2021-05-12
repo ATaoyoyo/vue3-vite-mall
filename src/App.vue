@@ -1,8 +1,12 @@
 <template>
   <router-view class="router-view" v-slot="{ Component }">
+    <!-- 开启顶部安全区适配 -->
+    <van-nav-bar safe-area-inset-top />
     <transition :name="transitionName">
       <component :is="Component" />
     </transition>
+    <!-- 开启底部安全区适配 -->
+    <van-number-keyboard safe-area-inset-bottom />
   </router-view>
 </template>
 
