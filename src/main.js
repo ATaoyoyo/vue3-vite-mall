@@ -5,7 +5,7 @@ import store from './store'
 
 const app = createApp(App)
 
-import { Button, Icon, Swipe, SwipeItem } from 'vant'
+import { Button, Icon, Swipe, SwipeItem, Toast } from 'vant'
 
 app.config.globalProperties.$filter = {
   prefix(url) {
@@ -18,7 +18,7 @@ app.config.globalProperties.$filter = {
   },
 }
 
-app.use(Button).use(Icon).use(Swipe).use(SwipeItem)
+app.use(Button).use(Icon).use(Swipe).use(SwipeItem).use(Toast)
 
 app.use(router)
 app.use(store)

@@ -2,25 +2,29 @@
   <div class="home">
     <Header />
     <Swiper :list="swiperList" />
+    <Category :category-list="categoryList" />
   </div>
 </template>
 
 <script>
 import Header from '/view/Header'
 import Swiper from '/cpn/Swiper'
+import Category from '/cpn/Category'
 import { onMounted, reactive, toRefs } from 'vue'
 
-import { getHomeRequest } from '../../api/home'
+import { getHomeRequest } from '/@/api/home'
+import categoryList from '/@/data/category'
 
 export default {
   name: 'home',
 
-  components: { Header, Swiper },
+  components: { Header, Swiper, Category },
 
   setup() {
     const state = reactive({
       swiperList: [],
       recommends: [],
+      categoryList: categoryList,
     })
 
     onMounted(async () => {
