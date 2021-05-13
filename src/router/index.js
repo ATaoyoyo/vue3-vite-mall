@@ -2,6 +2,8 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 
 const Home = () => import('/@/page/home')
 const Category = () => import('/@/page/category')
+const Cart = () => import('/@/page/cart')
+const Mine = () => import('/@/page/mine')
 const Login = () => import('/@/page/login')
 
 const router = createRouter({
@@ -26,6 +28,16 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: Login,
+    },
+    {
+      path: '/cart',
+      name: 'cart',
+      component: Cart,
+    },
+    {
+      path: '/mine',
+      name: 'mine',
+      component: Mine,
     },
   ],
 })
