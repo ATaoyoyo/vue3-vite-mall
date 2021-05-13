@@ -6,7 +6,19 @@ import 'normalize.css'
 
 const app = createApp(App)
 
-import { Button, Icon, Swipe, SwipeItem, Toast, Skeleton, Sticky, Tabbar, TabbarItem } from 'vant'
+import {
+  Button,
+  Icon,
+  Swipe,
+  SwipeItem,
+  Toast,
+  Skeleton,
+  Sticky,
+  Tabbar,
+  TabbarItem,
+  NavBar,
+  NumberKeyboard,
+} from 'vant'
 
 app.config.globalProperties.$filter = {
   prefix(url) {
@@ -30,6 +42,8 @@ app
   .use(Sticky)
   .use(Tabbar)
   .use(TabbarItem)
+  .use(NavBar)
+  .use(NumberKeyboard)
 
 app.use(router)
 app.use(store)
