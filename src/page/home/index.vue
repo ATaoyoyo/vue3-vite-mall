@@ -92,6 +92,12 @@ export default {
 .home {
   &-container {
     margin-top: 45px;
+    padding-bottom: 55px;
+
+    .van-skeleton {
+      margin-bottom: 20px;
+      padding-top: 20px;
+    }
   }
 }
 </style>

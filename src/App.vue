@@ -5,6 +5,7 @@
     <transition :name="transitionName">
       <component :is="Component" />
     </transition>
+    <NavBar />
     <!-- 开启底部安全区适配 -->
     <van-number-keyboard safe-area-inset-bottom />
   </router-view>
@@ -14,10 +15,14 @@
 // This starter template is using Vue 3 experimental <script setup> SFCs
 // Check out https://github.com/vuejs/rfcs/blob/script-setup-2/active-rfcs/0000-script-setup.md
 
+import NavBar from '/cpn/NavBar'
+
 import { toRefs, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 
 export default {
+  components: { NavBar },
+
   setup() {
     const router = useRouter()
 
