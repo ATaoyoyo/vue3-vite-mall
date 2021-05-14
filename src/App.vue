@@ -3,7 +3,9 @@
     <!-- 开启顶部安全区适配 -->
     <van-nav-bar safe-area-inset-top />
     <transition :name="transitionName">
-      <component :is="Component" />
+      <keep-alive>
+        <component :is="Component" />
+      </keep-alive>
     </transition>
     <NavBar />
     <!-- 开启底部安全区适配 -->
