@@ -91,23 +91,18 @@ export default {
       const registerParams = { loginName: username, password }
 
       if (!state.register) {
-        const { data, message, resultCode } = await loginRequest(loginParams)
-        if (resultCode === 500) {
-          Toast.fail(message)
-        } else {
-          console.log(data)
-          window.location.href = '/'
-        }
+        const { data } = await loginRequest(loginParams)
+
+        setLocal('token', data)
+        window.location.href = '/'
       }
 
       if (state.register) {
-        const { message, resultCode } = await registerRequest(registerParams)
-        if (resultCode === 500) {
-          Toast.fail(message)
-        } else {
-          Toast.success('注册成功！')
-          state.register = false
-        }
+        await registerRequest(registerParams)
+
+        Toast.success('注册成功！')
+        verifyRef.value.handDraw()
+        state.register = false
       }
     }
 
