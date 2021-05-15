@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "js-md5": "^0.7.3",
     "normalize.css": "^8.0.1",
     "vant": "^3.0.16",
     "vue": "^3.0.5",
