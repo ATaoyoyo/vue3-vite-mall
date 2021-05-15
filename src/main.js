@@ -18,6 +18,8 @@ import {
   TabbarItem,
   NavBar,
   NumberKeyboard,
+  Form,
+  Field,
 } from 'vant'
 
 app.config.globalProperties.$filter = {
@@ -44,6 +46,8 @@ app
   .use(TabbarItem)
   .use(NavBar)
   .use(NumberKeyboard)
+  .use(Form)
+  .use(Field)
 
 app.use(router)
 app.use(store)
