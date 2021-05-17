@@ -7,3 +7,7 @@ export const loginRequest = (params) => {
 export const registerRequest = (params) => {
   return request.post('/user/register', params)
 }
+
+export const userInfoRequest = (params) => {
+  return request.get('/user/info')
+}

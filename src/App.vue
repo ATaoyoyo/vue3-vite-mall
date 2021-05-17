@@ -7,7 +7,7 @@
         <component :is="Component" />
       </keep-alive>
     </transition>
-    <NavBar />
+    <NavBar v-if="show" />
     <!-- 开启底部安全区适配 -->
     <van-number-keyboard safe-area-inset-bottom />
   </router-view>
@@ -19,8 +19,8 @@
 
 import NavBar from '/cpn/NavBar'
 
-import { toRefs, reactive } from 'vue'
-import { useRouter } from 'vue-router'
+import { toRefs, reactive, computed } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
 export default {
   components: { NavBar },
@@ -28,8 +28,17 @@ export default {
   setup() {
     const router = useRouter()
 
+    const route = useRoute()
+
     const state = reactive({
       transitionName: 'slide-left',
+    })
+
+    const path = toRefs(route).path.value
+
+    const show = computed(() => {
+      const route = ['/', '/mine', '/home', '/category', '/cart']
+      return route.includes(path)
     })
 
     router.beforeEach((to, from) => {
@@ -42,7 +51,7 @@ export default {
       }
     })
 
-    return { ...toRefs(state) }
+    return { ...toRefs(state), show }
   },
 }
 </script>

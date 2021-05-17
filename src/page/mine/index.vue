@@ -3,12 +3,27 @@
 </template>
 
 <script>
+import { userInfoRequest } from '/@/api/user'
+import { onMounted, reactive, toRefs } from 'vue'
+
 export default {
   name: 'mine',
 
   components: {},
 
-  setup() {},
+  setup() {
+    const state = reactive({
+      user: {},
+      loading: true,
+    })
+
+    onMounted(async () => {
+      const data = await userInfoRequest()
+      console.log(data)
+    })
+
+    return { ...toRefs(state) }
+  },
 }
 </script>
 
