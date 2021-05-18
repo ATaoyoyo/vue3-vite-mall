@@ -14,6 +14,8 @@
         <GoodsList title="最新推荐" :list="recommends" />
       </van-skeleton>
     </div>
+
+    <NavBar />
   </div>
 </template>
 
@@ -22,6 +24,7 @@ import Header from '/cpn/Header'
 import Swiper from '/cpn/Swiper'
 import Category from '/cpn/Category'
 import GoodsList from '/cpn/GoodsList'
+import NavBar from '/cpn/NavBar'
 
 import { getHomeRequest } from '/@/api/home'
 import categoryList from '/@/data/category'
@@ -31,7 +34,7 @@ import { getCurrentInstance, onMounted, reactive, toRefs } from 'vue'
 export default {
   name: 'home',
 
-  components: { GoodsList, Header, Swiper, Category },
+  components: { GoodsList, Header, Swiper, Category, NavBar },
 
   setup() {
     const { ctx } = getCurrentInstance()

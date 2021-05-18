@@ -1,12 +1,16 @@
 <template>
-  <div class="cart">cart</div>
+  <div class="cart">
+    <NavBar />
+  </div>
 </template>
 
 <script>
+import NavBar from '/cpn/NavBar'
+
 export default {
   name: 'cart',
 
-  components: {},
+  components: { NavBar },
 
   setup() {},
 }

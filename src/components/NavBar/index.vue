@@ -1,6 +1,6 @@
 <template>
   <div class="NavBar">
-    <van-tabbar v-model="active" active-color="#1baeae">
+    <van-tabbar v-model="active" active-color="#1baeae" route safe-area-inset-bottom>
       <van-tabbar-item to="/home" icon="home-o">首页</van-tabbar-item>
       <van-tabbar-item to="/category" icon="bars">分类</van-tabbar-item>
       <van-tabbar-item to="/cart" icon="shopping-cart-o" badge="5">购物车</van-tabbar-item>

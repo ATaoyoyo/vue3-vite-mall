@@ -1,15 +1,19 @@
 <template>
-  <div class="mine">mine</div>
+  <div class="mine">
+    <NavBar />
+  </div>
 </template>
 
 <script>
+import NavBar from '/cpn/NavBar'
+
 import { userInfoRequest } from '/@/api/user'
 import { onMounted, reactive, toRefs } from 'vue'
 
 export default {
   name: 'mine',
 
-  components: {},
+  components: { NavBar },
 
   setup() {
     const state = reactive({

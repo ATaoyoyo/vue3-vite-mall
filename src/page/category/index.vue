@@ -1,12 +1,18 @@
 <template>
-  <div class="category">category</div>
+  <div class="category">
+    category
+
+    <NavBar />
+  </div>
 </template>
 
 <script>
+import NavBar from '/cpn/NavBar'
+
 export default {
   name: 'category',
 
-  components: {},
+  components: { NavBar },
 
   setup() {},
 }
