@@ -1,7 +1,7 @@
 <template>
   <van-swipe class="Swiper" :autoplay="3000" indicator-color="white">
     <van-swipe-item v-for="item in list" :key="item.id">
-      <img :src="item.src" alt="" @click="handToPage(item.url)" />
+      <img :src="$filter.prefix(item.src)" alt="" @click="item.url ? handToPage(item.url) : ''" />
     </van-swipe-item>
   </van-swipe>
 </template>
