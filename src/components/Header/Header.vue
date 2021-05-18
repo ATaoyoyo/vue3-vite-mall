@@ -10,17 +10,38 @@
         山河无恙，人间皆安
       </router-link>
     </div>
-    <router-link tag="a" class="Header__login" to="../../page/login"><span>登陆</span></router-link>
+    <router-link v-if="!isLogin" tag="a" class="Header__login" to="/login">
+      <span>登陆</span>
+    </router-link>
+    <router-link v-else to="/mine" class="Header__login">
+      <van-icon color="#fff" name="manager-o" />
+    </router-link>
   </div>
 </template>
 
 <script>
+import { onMounted, reactive, toRefs } from 'vue'
+
+import { getLocal } from '/@/utils'
+
 export default {
   name: 'Header',
 
   components: {},
 
-  setup() {},
+  setup() {
+    const state = reactive({
+      isLogin: false,
+    })
+
+    onMounted(() => {
+      const token = getLocal('token')
+
+      state.isLogin = token ? true : false
+    })
+
+    return { ...toRefs(state) }
+  },
 }
 </script>
 
@@ -77,9 +98,16 @@ export default {
   }
 
   &__login {
+    display: flex;
+    align-items: center;
     padding: 0 5px;
     font-size: 13px;
     color: #fff;
+
+    i {
+      font-size: 16px;
+      line-height: 1.5;
+    }
   }
 }
 </style>

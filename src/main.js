@@ -20,6 +20,8 @@ import {
   NumberKeyboard,
   Form,
   Field,
+  Cell,
+  CellGroup,
 } from 'vant'
 
 app.config.globalProperties.$filter = {
@@ -48,6 +50,8 @@ app
   .use(NumberKeyboard)
   .use(Form)
   .use(Field)
+  .use(Cell)
+  .use(CellGroup)
 
 app.use(router)
 app.use(store)
