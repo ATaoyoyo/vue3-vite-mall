@@ -1,6 +1,11 @@
 <template>
   <div class="login">
-    <van-nav-bar title="登陆" safe-area-inset-top left-arrow @click-left="$router.back()" />
+    <van-nav-bar
+      title="登陆"
+      safe-area-inset-top
+      left-arrow
+      @click-left="$router.push({ name: 'home' })"
+    />
     <div class="ct">
       <h1 class="login__title">欢迎登陆新蜂商城</h1>
       <van-form @submit="onRegisterOrLogin">
