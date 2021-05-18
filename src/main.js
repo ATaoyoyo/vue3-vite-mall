@@ -22,6 +22,9 @@ import {
   Field,
   Cell,
   CellGroup,
+  ActionBar,
+  ActionBarIcon,
+  ActionBarButton,
 } from 'vant'
 
 app.config.globalProperties.$filter = {
@@ -52,6 +55,9 @@ app
   .use(Field)
   .use(Cell)
   .use(CellGroup)
+  .use(ActionBar)
+  .use(ActionBarIcon)
+  .use(ActionBarButton)
 
 app.use(router)
 app.use(store)

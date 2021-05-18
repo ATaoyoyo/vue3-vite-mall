@@ -1,5 +1,5 @@
 <template>
-  <div class="GoodsItem">
+  <div class="GoodsItem" @click="handToProduct">
     <img :src="$filter.prefix(info.src)" :alt="info.name" />
     <div class="GoodsItem__desc">
       <p class="GoodsItem__desc-name">{{ info.name }}</p>
@@ -11,6 +11,8 @@
 <script>
 export default {
   name: 'GoodsItem',
+
+  emits: ['on-to-product'],
 
   props: {
     info: {
@@ -33,7 +35,13 @@ export default {
     },
   },
 
-  setup() {},
+  setup(prop, { emit }) {
+    const handToProduct = () => {
+      emit('on-to-product', prop.info.id)
+    }
+
+    return { handToProduct }
+  },
 }
 </script>
 

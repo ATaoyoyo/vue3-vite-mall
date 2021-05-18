@@ -2,12 +2,7 @@
   <div class="GoodsList">
     <p class="GoodsList__title">{{ title }}</p>
     <div class="GoodsList__item">
-      <GoodsItem
-        v-for="item in list"
-        :key="item.id"
-        :info="item"
-        @click.native="handGoodsItemClick(item)"
-      />
+      <GoodsItem v-for="item in list" :key="item.id" :info="item" @on-to-product="handToProduct" />
     </div>
   </div>
 </template>
@@ -40,11 +35,11 @@ export default {
   components: { GoodsItem },
 
   setup(prop, { emit }) {
-    const handGoodsItemClick = (item) => {
-      emit('on-goods-click', item)
+    const handToProduct = (id) => {
+      emit('on-goods-click', id)
     }
 
-    return { handGoodsItemClick }
+    return { handToProduct }
   },
 }
 </script>

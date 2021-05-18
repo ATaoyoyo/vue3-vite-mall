@@ -5,13 +5,13 @@
       <Swiper :list="swiperList" />
       <Category :category-list="categoryList" />
       <van-skeleton title :row="3" :loading="loading">
-        <GoodsList title="新品上线" :list="newGoods" />
+        <GoodsList title="新品上线" :list="newGoods" @on-goods-click="handToProduct" />
       </van-skeleton>
       <van-skeleton title :row="3" :loading="loading">
-        <GoodsList title="热门商品" :list="hotGoods" />
+        <GoodsList title="热门商品" :list="hotGoods" @on-goods-click="handToProduct" />
       </van-skeleton>
       <van-skeleton title :row="3" :loading="loading">
-        <GoodsList title="最新推荐" :list="recommends" />
+        <GoodsList title="最新推荐" :list="recommends" @on-goods-click="handToProduct" />
       </van-skeleton>
     </div>
 
@@ -30,6 +30,7 @@ import { getHomeRequest } from '/@/api/home'
 import categoryList from '/@/data/category'
 
 import { getCurrentInstance, onMounted, reactive, toRefs } from 'vue'
+import { useRouter } from 'vue-router'
 
 export default {
   name: 'home',
@@ -38,6 +39,7 @@ export default {
 
   setup() {
     const { ctx } = getCurrentInstance()
+    const router = useRouter()
     const state = reactive({
       swiperList: [],
       recommends: [],
@@ -68,7 +70,11 @@ export default {
       state.loading = false
     })
 
-    return { ...toRefs(state) }
+    const handToProduct = (id) => {
+      router.push({ path: `/product/${id}` })
+    }
+
+    return { ...toRefs(state), handToProduct }
   },
 
   methods: {
