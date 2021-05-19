@@ -31,10 +31,15 @@
     </div>
 
     <van-action-bar safe-area-inset-bottom>
-      <van-action-bar-icon icon="chat-o" text="客服" />
-      <van-action-bar-icon icon="cart-o" badge="6" text="购物车" />
-      <van-action-bar-button type="warning" text="加入购物车" />
-      <van-action-bar-button type="danger" text="立即购买" />
+      <van-action-bar-icon icon="chat-o" text="客服" @click="handService" />
+      <van-action-bar-icon
+        icon="cart-o"
+        :badge="count ? count : ''"
+        text="购物车"
+        @click="$router.push({ name: 'cart' })"
+      />
+      <van-action-bar-button type="warning" text="加入购物车" @click="handToAddCart" />
+      <van-action-bar-button type="danger" text="立即购买" @click="handToBuy" />
     </van-action-bar>
   </div>
 </template>
@@ -42,10 +47,13 @@
 <script>
 import Swiper from '/cpn/Swiper'
 
-import { useRoute } from 'vue-router'
-import { onMounted, reactive, toRefs } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { useStore } from 'vuex'
+import { computed, onMounted, reactive, toRefs } from 'vue'
 
 import { productDetail } from '/@/api/product'
+import { addCartRequest } from '/@/api/cart'
+import { Toast } from 'vant'
 
 export default {
   name: 'product',
@@ -54,9 +62,15 @@ export default {
 
   setup() {
     const route = useRoute()
+    const router = useRouter()
+    const store = useStore()
 
     const state = reactive({
       productDetail: {},
+    })
+
+    const count = computed(() => {
+      return store.state.cartCount.count
     })
 
     onMounted(async () => {
@@ -69,9 +83,33 @@ export default {
       })
 
       state.productDetail = data
+      await store.dispatch('updateCart')
     })
 
-    return { ...toRefs(state) }
+    const handService = () => {
+      Toast('建设中！')
+    }
+
+    const handToAddCart = async () => {
+      const { resultCode } = await addCartRequest({
+        goodsCount: 1,
+        goodsId: state.productDetail.goodsId,
+      })
+
+      if (resultCode === 200) Toast.success('添加成功！')
+
+      await store.dispatch('updateCart')
+    }
+
+    const handToBuy = async () => {
+      await addCartRequest({ goodsCount: 1, goodsId: state.productDetail.goodsId })
+
+      await store.dispatch('updateCart')
+
+      await router.push({ name: 'cart' })
+    }
+
+    return { ...toRefs(state), handToAddCart, handService, handToBuy, count }
   },
 }
 </script>

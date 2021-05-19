@@ -1,1 +1,3 @@
-export default {}
+export default {
+  cartCount: 0,
+}
