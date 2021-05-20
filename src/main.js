@@ -25,6 +25,13 @@ import {
   ActionBar,
   ActionBarIcon,
   ActionBarButton,
+  Checkbox,
+  CheckboxGroup,
+  SwipeCell,
+  Card,
+  Stepper,
+  SubmitBar,
+  Empty,
 } from 'vant'
 
 app.config.globalProperties.$filter = {
@@ -58,6 +65,13 @@ app
   .use(ActionBar)
   .use(ActionBarIcon)
   .use(ActionBarButton)
+  .use(Checkbox)
+  .use(CheckboxGroup)
+  .use(SwipeCell)
+  .use(Card)
+  .use(Stepper)
+  .use(SubmitBar)
+  .use(Empty)
 
 app.use(router)
 app.use(store)
