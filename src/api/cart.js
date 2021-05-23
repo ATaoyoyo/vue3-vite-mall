@@ -15,3 +15,7 @@ export const modifyGoodsRequest = (params) => {
 export const deleteGoodsRequest = (params) => {
   return request.delete(`/shop-cart/${params}`)
 }
+
+export const queryBuyCartItemIds = (params) => {
+  return request.get('/shop-cart/settle', { params })
+}

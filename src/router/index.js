@@ -6,6 +6,9 @@ const Cart = () => import('/@/page/cart')
 const Mine = () => import('/@/page/mine')
 const Login = () => import('/@/page/login')
 const Product = () => import('/@/page/product')
+const Orders = () => import('/@/page/orders')
+const Address = () => import('/@/page/address')
+const AddressEdit = () => import('/@/page/address/addressEdit.vue')
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -44,6 +47,17 @@ const router = createRouter({
       path: '/product/:id',
       name: 'product',
       component: Product,
+    },
+    {
+      path: '/create-order',
+      name: 'create-order',
+      component: Orders,
+    },
+    {
+      path: '/address',
+      name: 'address',
+      component: Address,
+      children: [{ path: 'edit', name: 'address-edit', component: AddressEdit }],
     },
   ],
 })

@@ -78,6 +78,7 @@ import { computed, onMounted, reactive, toRefs } from 'vue'
 import { getCartRequest, modifyGoodsRequest, deleteGoodsRequest } from '/@/api/cart'
 import { Toast } from 'vant'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 
 export default {
   name: 'cart',
@@ -86,6 +87,7 @@ export default {
 
   setup() {
     const store = useStore()
+    const router = useRouter()
 
     const state = reactive({
       checkedGoods: [],
@@ -155,7 +157,15 @@ export default {
       await initCartData()
     }
 
-    const handSubmit = async () => {}
+    const handSubmit = async () => {
+      if (state.checkedGoods.length === 0) {
+        Toast.fail('请先选择需要购买的商品～')
+        return
+      }
+
+      const params = JSON.stringify(state.checkedGoods)
+      await router.push({ name: 'create-order', query: { cartItemIds: params } })
+    }
 
     return {
       ...toRefs(state),

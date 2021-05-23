@@ -32,6 +32,7 @@ import {
   Stepper,
   SubmitBar,
   Empty,
+  AddressEdit,
 } from 'vant'
 
 app.config.globalProperties.$filter = {
@@ -72,6 +73,7 @@ app
   .use(Stepper)
   .use(SubmitBar)
   .use(Empty)
+  .use(AddressEdit)
 
 app.use(router)
 app.use(store)
