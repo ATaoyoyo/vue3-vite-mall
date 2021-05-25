@@ -57,7 +57,11 @@ const router = createRouter({
       path: '/address',
       name: 'address',
       component: Address,
-      children: [{ path: 'edit', name: 'address-edit', component: AddressEdit }],
+    },
+    {
+      path: '/address-edit',
+      name: 'address-edit',
+      component: AddressEdit,
     },
   ],
 })

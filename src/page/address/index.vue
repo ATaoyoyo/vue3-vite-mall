@@ -3,20 +3,33 @@
     <van-nav-bar title="地址管理" safe-area-inset-top left-arrow @click-left="$router.back()" />
 
     <div class="address__content">
-      <van-button class="address-btn" color="#1baeae" round @click="handIncremenAddress"
-        >新增地址</van-button
-      >
+      <van-button class="address-btn" color="#1baeae" round @click="handIncrementAddress">
+        新增地址
+      </van-button>
     </div>
   </div>
 </template>
 
 <script>
+import { reactive, toRefs } from 'vue'
+import { useRouter } from 'vue-router'
+
 export default {
   name: 'address',
 
   components: {},
 
-  setup() {},
+  setup() {
+    const router = useRouter()
+
+    const state = reactive({})
+
+    const handIncrementAddress = () => {
+      router.push({ name: 'address-edit' })
+    }
+
+    return { ...toRefs(state), handIncrementAddress }
+  },
 }
 </script>
 
