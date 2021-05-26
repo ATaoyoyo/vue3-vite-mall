@@ -33,6 +33,8 @@ import {
   SubmitBar,
   Empty,
   AddressEdit,
+  AddressList,
+  ContactCard,
 } from 'vant'
 
 app.config.globalProperties.$filter = {
@@ -74,6 +76,8 @@ app
   .use(SubmitBar)
   .use(Empty)
   .use(AddressEdit)
+  .use(AddressList)
+  .use(ContactCard)
 
 app.use(router)
 app.use(store)
