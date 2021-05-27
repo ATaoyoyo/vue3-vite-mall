@@ -11,7 +11,7 @@
         <p class="mine__mine-info__desc-item"><span>签名：</span>{{ user.introduceSign }}</p>
       </div>
     </div>
-    <van-cell is-link title="我的订单" to="/order" />
+    <van-cell is-link title="我的订单" to="/mine-order" />
     <van-cell is-link title="账号管理" to="/setting" />
     <van-cell is-link title="地址管理" to="/address?from=mine" />
     <van-cell is-link title="关于我们" to="/about is-link" />

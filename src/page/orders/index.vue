@@ -26,8 +26,24 @@
         <span>¥{{ computedTotalPrice }}</span>
       </p>
 
-      <van-button block round color="#1baeae">生成订单</van-button>
+      <van-button block round color="#1baeae" @click="handCreateOrder">生成订单</van-button>
     </div>
+
+    <van-popup
+      v-model:show="showPay"
+      position="bottom"
+      closeable
+      :close-on-click-overlay="false"
+      :style="{ height: '30%' }"
+      @close="handClosePopup"
+    >
+      <div :style="{ width: '90%', margin: '0 auto', padding: '50px 0' }">
+        <van-button :style="{ marginBottom: '10px' }" color="#1989fa" block @click="handPayOrder(1)"
+          >支付宝支付
+        </van-button>
+        <van-button color="#4fc08d" block @click="handPayOrder(2)">微信支付</van-button>
+      </div>
+    </van-popup>
   </div>
 </template>
 
@@ -39,6 +55,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { queryBuyCartItemIds } from '/@/api/cart'
 import { queryDefaultAddressRequest, queryAddressDetailRequest } from '/@/api/address'
 import { getLocal, setLocal } from '/@/utils'
+import { createOrderRequest, payOrderRequest } from '../../api/order'
 
 export default {
   name: 'orders',
@@ -52,6 +69,8 @@ export default {
     const state = reactive({
       address: {},
       cartList: [],
+      orderNo: '',
+      showPay: false,
     })
 
     onMounted(() => {
@@ -100,7 +119,42 @@ export default {
       router.push({ name: 'address' })
     }
 
-    return { ...toRefs(state), handEditAddress, computedTotalPrice }
+    const handCreateOrder = async () => {
+      const params = {
+        addressId: state.address.addressId,
+        cartItemIds: state.cartList.map(({ cartItemId }) => cartItemId),
+      }
+
+      const { data } = await createOrderRequest(params)
+
+      setLocal('cartItemIds', '')
+      state.orderNo = data
+      state.showPay = true
+    }
+
+    const handPayOrder = async (type) => {
+      const params = { orderNo: state.orderNo, payType: type }
+      await payOrderRequest(params)
+
+      Toast.success('支付成功！')
+
+      setTimeout(() => {
+        router.push({ name: 'mine-order' })
+      }, 1500)
+    }
+
+    const handClosePopup = () => {
+      router.push({ name: 'mine-order' })
+    }
+
+    return {
+      ...toRefs(state),
+      handEditAddress,
+      handPayOrder,
+      handClosePopup,
+      handCreateOrder,
+      computedTotalPrice,
+    }
   },
 }
 </script>

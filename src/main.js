@@ -35,6 +35,11 @@ import {
   AddressEdit,
   AddressList,
   ContactCard,
+  Popup,
+  Tab,
+  Tabs,
+  PullRefresh,
+  List,
 } from 'vant'
 
 app.config.globalProperties.$filter = {
@@ -78,6 +83,11 @@ app
   .use(AddressEdit)
   .use(AddressList)
   .use(ContactCard)
+  .use(Popup)
+  .use(Tab)
+  .use(Tabs)
+  .use(PullRefresh)
+  .use(List)
 
 app.use(router)
 app.use(store)
