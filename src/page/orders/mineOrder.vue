@@ -7,7 +7,7 @@
       @click-left="$router.back()"
       safe-area-inset-top
     />
-    <van-tabs v-model:active="active">
+    <van-tabs v-model:active="active" @click="handChangeTab">
       <van-tab title="全部" name=""></van-tab>
       <van-tab title="待付款" name="0"></van-tab>
       <van-tab title="待确认" name="1"></van-tab>
@@ -18,31 +18,31 @@
 
     <div class="mine-order-box">
       <van-pull-refresh v-model="loading" @refresh="handRefresh">
-        <van-list
-          v-model:loading="listLoading"
-          :finished="finished"
-          finished-text="没有更多了"
-          @load="handLoad"
-        >
-          <div class="mine-order__box" v-for="item in orderList" :key="item.orderNo">
-            <div class="mine-order__box-title">
-              <span>订单时间：{{ item.createTime }}</span>
-              <span>{{ item.orderStatusString }}</span>
-            </div>
-            <div class="mine-order__box-content">
-              <van-card
-                v-for="goods in item.newBeeMallOrderItemVOS"
-                :key="goods.goodsId"
-                :num="goods.goodsCount"
-                :price="goods.sellingPrice.toFixed(2)"
-                :desc="goods.goodsName"
-                :title="goods.goodsName"
-                :thumb="goods.goodsCoverImg"
-                :origin-price="(goods.sellingPrice + 500).toFixed(2)"
-              />
-            </div>
+        <!--        <van-list-->
+        <!--          v-model:loading="listLoading"-->
+        <!--          :finished="finished"-->
+        <!--          finished-text="没有更多了"-->
+        <!--          @load="handLoad"-->
+        <!--        >-->
+        <div class="mine-order__box" v-for="item in orderList" :key="item.orderNo">
+          <div class="mine-order__box-title">
+            <span>订单时间：{{ item.createTime }}</span>
+            <span>{{ item.orderStatusString }}</span>
           </div>
-        </van-list>
+          <div class="mine-order__box-content">
+            <van-card
+              v-for="goods in item.newBeeMallOrderItemVOS"
+              :key="goods.goodsId"
+              :num="goods.goodsCount"
+              :price="goods.sellingPrice.toFixed(2)"
+              :desc="goods.goodsName"
+              :title="goods.goodsName"
+              :thumb="goods.goodsCoverImg"
+              :origin-price="(goods.sellingPrice + 500).toFixed(2)"
+            />
+          </div>
+        </div>
+        <!--        </van-list>-->
       </van-pull-refresh>
     </div>
   </div>
@@ -97,7 +97,12 @@ export default {
       initOrderList()
     }
 
-    return { ...toRefs(state), handRefresh, handLoad }
+    const handChangeTab = (name) => {
+      state.status = name
+      handRefresh()
+    }
+
+    return { ...toRefs(state), handChangeTab, handRefresh, handLoad }
   },
 }
 </script>
@@ -105,9 +110,11 @@ export default {
 <style lang="less" scoped>
 .mine-order {
   &-box {
+    position: absolute;
+    top: 90px;
     overflow: hidden;
-    overflow-y: scroll;
-    margin-top: 90px;
+    left: 0;
+    right: 0;
   }
 
   .van-tabs {
