@@ -1,7 +1,9 @@
 <template>
   <router-view class="router-view" v-slot="{ Component }">
     <transition :name="transitionName">
-      <keep-alive :exclude="['mine', 'product', 'cart', 'orders', 'order-detail', 'mine-order']">
+      <keep-alive
+        :exclude="['mine', 'product', 'cart', 'orders', 'order-detail', 'mine-order', 'setting']"
+      >
         <component :is="Component" />
       </keep-alive>
     </transition>

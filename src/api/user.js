@@ -11,3 +11,11 @@ export const registerRequest = (params) => {
 export const userInfoRequest = (params) => {
   return request.get('/user/info')
 }
+
+export const userLogoutRequest = () => {
+  return request.post('/user/logout')
+}
+
+export const editUserInfoRequest = (params) => {
+  return request.put('/user/info', params)
+}
