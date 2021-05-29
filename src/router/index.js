@@ -8,6 +8,7 @@ const Login = () => import('/@/page/login')
 const Product = () => import('/@/page/product')
 const Orders = () => import('/@/page/orders')
 const MineOrder = () => import('/@/page/orders/mineOrder.vue')
+const DetailOrder = () => import('/@/page/orders/detailOrder.vue')
 const Address = () => import('/@/page/address')
 const AddressEdit = () => import('/@/page/address/addressEdit.vue')
 
@@ -58,6 +59,11 @@ const router = createRouter({
       path: '/mine-order',
       name: 'mine-order',
       component: MineOrder,
+    },
+    {
+      path: '/detail-order',
+      name: 'detail-order',
+      component: DetailOrder,
     },
     {
       path: '/address',

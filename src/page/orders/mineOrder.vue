@@ -1,12 +1,6 @@
 <template>
   <div class="mine-order">
-    <van-nav-bar
-      title="我的订单"
-      fixed
-      left-arrow
-      @click-left="$router.back()"
-      safe-area-inset-top
-    />
+    <van-nav-bar title="我的订单" fixed left-arrow @click-left="handBack" safe-area-inset-top />
     <van-tabs v-model:active="active" @click="handChangeTab">
       <van-tab title="全部" name=""></van-tab>
       <van-tab title="待付款" name="0"></van-tab>
@@ -24,7 +18,12 @@
         <!--          finished-text="没有更多了"-->
         <!--          @load="handLoad"-->
         <!--        >-->
-        <div class="mine-order__box" v-for="item in orderList" :key="item.orderNo">
+        <div
+          class="mine-order__box"
+          v-for="item in orderList"
+          :key="item.orderNo"
+          @click="handToDetail(item.orderNo)"
+        >
           <div class="mine-order__box-title">
             <span>订单时间：{{ item.createTime }}</span>
             <span>{{ item.orderStatusString }}</span>
@@ -52,6 +51,7 @@
 import { onMounted, reactive, toRefs } from 'vue'
 
 import { queryOrderListRequest } from '../../api/order'
+import { useRouter } from 'vue-router'
 
 export default {
   name: 'mine-order',
@@ -59,6 +59,8 @@ export default {
   components: {},
 
   setup() {
+    const router = useRouter()
+
     const state = reactive({
       active: '',
       loading: false,
@@ -102,7 +104,15 @@ export default {
       handRefresh()
     }
 
-    return { ...toRefs(state), handChangeTab, handRefresh, handLoad }
+    const handToDetail = (id) => {
+      router.push({ name: 'detail-order', query: { id } })
+    }
+
+    const handBack = () => {
+      router.push({ name: 'mine' })
+    }
+
+    return { ...toRefs(state), handBack, handChangeTab, handRefresh, handLoad, handToDetail }
   },
 }
 </script>
@@ -134,7 +144,7 @@ export default {
     margin: 10px;
     padding: 10px;
     border-radius: 8px;
-    background-color: #fafafa;
+    background-color: #fbfbfb;
 
     &-title {
       display: flex;

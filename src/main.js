@@ -40,6 +40,7 @@ import {
   Tabs,
   PullRefresh,
   List,
+  Dialog,
 } from 'vant'
 
 app.config.globalProperties.$filter = {
@@ -88,6 +89,7 @@ app
   .use(Tabs)
   .use(PullRefresh)
   .use(List)
+  .use(Dialog)
 
 app.use(router)
 app.use(store)

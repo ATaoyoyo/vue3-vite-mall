@@ -11,3 +11,11 @@ export const payOrderRequest = (params) => {
 export const queryOrderListRequest = (params) => {
   return request.get('/order', { params })
 }
+
+export const queryOrderDetailRequest = (params) => {
+  return request.get(`/order/${params}`)
+}
+
+export const cancelOrderRequest = (params) => {
+  return request.put(`/order/${params}/cancel`)
+}
