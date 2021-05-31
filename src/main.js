@@ -41,6 +41,7 @@ import {
   PullRefresh,
   List,
   Dialog,
+  TreeSelect,
 } from 'vant'
 
 app.config.globalProperties.$filter = {
@@ -90,6 +91,7 @@ app
   .use(PullRefresh)
   .use(List)
   .use(Dialog)
+  .use(TreeSelect)
 
 app.use(router)
 app.use(store)
