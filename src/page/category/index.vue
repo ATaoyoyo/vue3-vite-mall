@@ -9,13 +9,18 @@
       @click-nav="handClickCategory"
     >
       <template #content v-if="category.length > 0">
-        <div v-for="item in category[categoryIndex].children" :key="item.categoryId">
+        <div
+          class="category-content"
+          v-for="item in category[categoryIndex].children"
+          :key="item.categoryId"
+        >
           <h3 class="category-title">{{ item.text }}</h3>
           <div class="category-goods">
             <div class="category-goods-item" v-for="child in item.children" :key="child.categoryId">
-              <van-icon name="cart-o" class="category-goods-item-icon" />
+              <van-icon name="cart-circle-o" class="category-goods-item-icon" />
               <span class="category-goods-item-text">{{ child.text }}</span>
             </div>
+            <div></div>
           </div>
         </div>
       </template>
@@ -90,37 +95,48 @@ export default {
   }
 
   .van-tree-select__content {
+    .category-content {
+      &:last-child {
+        margin-bottom: 150px;
+      }
+    }
   }
 
   .category-title {
-    margin: 20px;
-    padding: 5px;
+    margin: 0;
+    padding: 10px;
     text-align: center;
+    color: #1baeae;
     border-bottom: 1px solid #eee;
   }
 
   .category-goods {
-    height: 100% !important;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 10px;
+    height: 100% !important;
 
     &-item {
-      width: 30%;
+      margin-bottom: 10px;
+      padding: 5px;
+      width: 28%;
       text-align: center;
+      border-radius: 5px;
 
-      &:last-child {
-        align-self: self-start;
+      &:hover {
+        background-color: #f9f9f9;
       }
 
       .van-icon {
-        font-size: 40px;
+        font-size: 35px;
         color: #1baeae;
       }
 
       &-text {
         display: block;
         text-align: center;
+        font-size: 12px;
         color: #666;
       }
     }
