@@ -7,6 +7,7 @@ const Mine = () => import('/@/page/mine')
 const Setting = () => import('/@/page/mine/setting.vue')
 const Login = () => import('/@/page/login')
 const Product = () => import('/@/page/product')
+const ProductList = () => import('/@/page/product/productList.vue')
 const Orders = () => import('/@/page/orders')
 const MineOrder = () => import('/@/page/orders/mineOrder.vue')
 const DetailOrder = () => import('/@/page/orders/detailOrder.vue')
@@ -50,6 +51,11 @@ const router = createRouter({
       path: '/product/:id',
       name: 'product',
       component: Product,
+    },
+    {
+      path: '/product-list',
+      name: 'product-list',
+      component: ProductList,
     },
     {
       path: '/create-order',

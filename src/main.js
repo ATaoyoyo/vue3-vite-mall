@@ -42,6 +42,7 @@ import {
   List,
   Dialog,
   TreeSelect,
+  Search,
 } from 'vant'
 
 app.config.globalProperties.$filter = {
@@ -92,6 +93,7 @@ app
   .use(List)
   .use(Dialog)
   .use(TreeSelect)
+  .use(Search)
 
 app.use(router)
 app.use(store)

@@ -3,7 +3,7 @@
     <router-link tag="i" class="Header__menu" to="../../page/category">
       <van-icon name="wap-nav"></van-icon>
     </router-link>
-    <div class="Header__search">
+    <div class="Header__search" @click="$router.push('/product-list?form=home')">
       <span class="Header__search__app-name">新蜂商城</span>
       <i class="divider" />
       <router-link tag="span" class="Header__search__title" to="/">
