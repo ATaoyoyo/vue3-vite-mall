@@ -1,7 +1,7 @@
 <template>
   <div class="product-list">
     <div class="product-list__nav">
-      <van-icon class="product-list__nav__icon" name="arrow-left" />
+      <van-icon @click="$router.back()" class="product-list__nav__icon" name="arrow-left" />
       <van-search
         class="product-list__nav__input"
         v-model="search"
@@ -12,7 +12,6 @@
         class="product-list__nav__button"
         color="#1baeae"
         size="mini"
-        icon="search"
         type="primary"
         @click="handSearch"
       >
@@ -20,6 +19,14 @@
       </van-button>
       <!--      <van-field class="product-list__nav__input" v-model="search" />-->
     </div>
+
+    <van-tabs v-model:active="active">
+      <van-tab title="推荐"></van-tab>
+      <van-tab title="新品"></van-tab>
+      <van-tab title="价格"></van-tab>
+    </van-tabs>
+
+    <img class="empty" src="https://s.yezgea02.com/1604041313083/kesrtd.png" alt="搜索" />
   </div>
 </template>
 
@@ -37,6 +44,7 @@ export default {
       orderBy: '',
       page: '',
       categoryId: '',
+      active: '',
     })
 
     const getSearch = async () => {
@@ -80,6 +88,39 @@ export default {
       font-size: 20px;
       color: #333333;
     }
+  }
+
+  /deep/ .van-tabs--line .van-tabs__wrap {
+    height: 30px;
+  }
+
+  /deep/ .van-tabs {
+    margin: 10px;
+    border-radius: 3px;
+    border: 1px solid #1baeae;
+    overflow: hidden;
+
+    .van-tab {
+      &:nth-child(2n) {
+        border-left: 1px solid #1baeae;
+        border-right: 1px solid #1baeae;
+      }
+    }
+  }
+
+  /deep/ .van-tab--active {
+    color: #fff;
+    background-color: #1baeae;
+  }
+
+  /deep/ .van-tabs__line {
+    background-color: transparent;
+  }
+
+  .empty {
+    display: block;
+    width: 150px;
+    margin: 50px auto 20px;
   }
 }
 </style>
