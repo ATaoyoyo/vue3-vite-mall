@@ -71,7 +71,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import NavBar from '/cpn/NavBar'
 import { computed, onMounted, reactive, toRefs } from 'vue'
 

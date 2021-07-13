@@ -1,10 +1,11 @@
-import { createApp } from 'vue'
+import {createApp} from 'vue'
 import App from './App.vue'
 import router from './router'
-import store from './store'
+import store, {key} from './store'
 import 'normalize.css'
 
 const app = createApp(App)
+
 
 import {
   Button,
@@ -46,7 +47,7 @@ import {
 } from 'vant'
 
 app.config.globalProperties.$filter = {
-  prefix(url) {
+  prefix(url: string) {
     url = String(url)
     if (url && url.startsWith('http')) {
       return url
@@ -56,6 +57,9 @@ app.config.globalProperties.$filter = {
     }
   },
 }
+
+
+app.use(store, key)
 
 app
   .use(Button)

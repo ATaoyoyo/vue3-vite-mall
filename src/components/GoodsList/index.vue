@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import GoodsItem from './GoodsItem'
 
 export default {

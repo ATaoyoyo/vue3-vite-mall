@@ -2,8 +2,9 @@ import { defineConfig } from 'vite'
 import { resolve } from 'path'
 import vue from '@vitejs/plugin-vue'
 import styleImport from 'vite-plugin-style-import'
+import path from 'path'
 
-const path = (name) => resolve(__dirname, name)
+// const path = (name) => resolve(__dirname, name)
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -14,7 +15,7 @@ export default defineConfig({
         {
           libraryName: 'vant',
           esModule: true,
-          resolveStyle: (name) => `vant/es/${name}/style`,
+          resolveStyle: (name) => `vant/es/${ name }/style`,
         },
       ],
     }),
@@ -24,12 +25,12 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '/@': path('src'),
-      '/cpn': path('src/components'),
-      '/page': path('src/page'),
-      '/view': path('src/view'),
-      '/utils': path('src/utils'),
-      '/api': path('src/api'),
+      'src': path.resolve(__dirname, './src'),
+      'cpn': path.resolve(__dirname, './src/components'),
+      'page': path.resolve(__dirname, 'src/page'),
+      'view': path.resolve(__dirname, 'src/view'),
+      'utils': path.resolve(__dirname, 'src/utils'),
+      'api': path.resolve(__dirname, './src/api'),
     },
   },
   server: {

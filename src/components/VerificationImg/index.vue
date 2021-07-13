@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { onMounted, reactive, ref, toRefs } from 'vue'
 
 export default {

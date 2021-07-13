@@ -21,7 +21,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { onMounted, reactive, toRefs } from 'vue'
 import { Dialog, Toast } from 'vant'
 import md5 from 'js-md5'

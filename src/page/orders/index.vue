@@ -47,7 +47,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { computed, onMounted, reactive, toRefs } from 'vue'
 import { Toast } from 'vant'
 import { useRoute, useRouter } from 'vue-router'

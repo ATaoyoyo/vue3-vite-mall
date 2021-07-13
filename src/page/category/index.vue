@@ -30,7 +30,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import NavBar from '/cpn/NavBar'
 
 import { queryCategoryRequest } from '/@/api/product'

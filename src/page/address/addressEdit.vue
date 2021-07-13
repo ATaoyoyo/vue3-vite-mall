@@ -13,7 +13,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { tdist } from '../../data/address'
 
 import { onMounted, reactive, toRefs } from 'vue'
@@ -23,7 +23,7 @@ import {
   addAddressRequest,
   editAddressRequest,
   deleteAddressRequest,
-} from '../../api/address'
+} from 'api/address'
 import { Toast } from 'vant'
 
 export default {

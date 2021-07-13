@@ -85,7 +85,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { useRoute } from 'vue-router'
 import { onMounted, reactive, toRefs } from 'vue'
 import { Dialog, Toast } from 'vant'

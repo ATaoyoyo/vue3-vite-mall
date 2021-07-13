@@ -44,7 +44,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Swiper from '/cpn/Swiper'
 
 import { useRoute, useRouter } from 'vue-router'

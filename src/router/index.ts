@@ -1,18 +1,20 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-const Home = () => import('/@/page/home')
-const Category = () => import('/@/page/category')
-const Cart = () => import('/@/page/cart')
-const Mine = () => import('/@/page/mine')
-const Setting = () => import('/@/page/mine/setting.vue')
-const Login = () => import('/@/page/login')
-const Product = () => import('/@/page/product')
-const ProductList = () => import('/@/page/product/productList.vue')
-const Orders = () => import('/@/page/orders')
-const MineOrder = () => import('/@/page/orders/mineOrder.vue')
-const DetailOrder = () => import('/@/page/orders/detailOrder.vue')
-const Address = () => import('/@/page/address')
-const AddressEdit = () => import('/@/page/address/addressEdit.vue')
+// const Home = () => import('/@/page/home')
+import Home from '../page/home'
+import Category from '../page/category'
+import Cart from '../page/cart'
+import Mine from '../page/mine'
+import Setting from '../page/mine/setting.vue'
+import Login from '../page/login'
+import Product from '../page/product/productList.vue'
+import ProductList from '../page/mine'
+import Orders from '../page/orders'
+import MineOrder from '../page/orders/mineOrder.vue'
+import DetailOrder from '../page/orders/detailOrder.vue'
+import Address from '../page/address'
+import AddressEdit from '../page/address/addressEdit.vue'
+
 
 const router = createRouter({
   history: createWebHashHistory(),

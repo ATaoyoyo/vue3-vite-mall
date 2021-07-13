@@ -1,8 +1,8 @@
-import axios from 'axios'
-import { Toast } from 'vant'
+import axios, {AxiosRequestConfig, AxiosResponse} from 'axios'
+import {Toast} from 'vant'
 import router from '../router'
 
-import { getLocal } from '../utils'
+import {getLocal} from '../utils'
 
 const BASE_URL =
   process.env.NODE_ENV == 'development'
@@ -23,7 +23,7 @@ const request = axios.create({
 })
 
 request.interceptors.request.use(
-  (config) => {
+  (config: AxiosRequestConfig) => {
     return config
   },
   (err) => {
@@ -32,10 +32,10 @@ request.interceptors.request.use(
 )
 
 request.interceptors.response.use(
-  (res) => {
+  (res: AxiosResponse) => {
     const {
       data,
-      data: { resultCode, message },
+      data: {resultCode, message},
     } = res
 
     if (typeof data !== 'object') {
@@ -46,9 +46,12 @@ request.interceptors.response.use(
     if (resultCode !== 200) {
       if (message) Toast.fail(message)
 
-      if (resultCode === 416) router.push({ name: 'login' })
+      if (resultCode === 416) {
+        localStorage.removeItem('token')
+        window.location.replace('/login')
+      }
 
-      return Promise.reject(data)
+      return data
     }
 
     return data

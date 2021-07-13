@@ -47,7 +47,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { onMounted, reactive, toRefs } from 'vue'
 
 import { queryOrderListRequest } from '../../api/order'

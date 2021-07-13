@@ -19,26 +19,28 @@
   </div>
 </template>
 
-<script>
-import Header from '/cpn/Header'
-import Swiper from '/cpn/Swiper'
-import Category from '/cpn/Category'
-import GoodsList from '/cpn/GoodsList'
-import NavBar from '/cpn/NavBar'
+<script lang="ts">
+import Header from 'cpn/Header'
+import Swiper from 'cpn/Swiper'
+import Category from 'cpn/Category'
+import GoodsList from 'cpn/GoodsList'
+import NavBar from 'cpn/NavBar'
 
-import { getHomeRequest } from '/@/api/home'
-import categoryList from '/@/data/category'
+import {getHomeRequest} from 'api/home'
+import categoryList from 'src/data/category'
 
-import { getCurrentInstance, onMounted, reactive, toRefs } from 'vue'
-import { useRouter } from 'vue-router'
+import {getCurrentInstance, onMounted, reactive, toRefs} from 'vue'
+import {useRouter} from 'vue-router'
 
 export default {
+
+
   name: 'home',
 
-  components: { GoodsList, Header, Swiper, Category, NavBar },
+  components: {GoodsList, Header, Swiper, Category, NavBar},
 
   setup() {
-    const { ctx } = getCurrentInstance()
+    const {ctx} = getCurrentInstance()
     const router = useRouter()
     const state = reactive({
       swiperList: [],
@@ -50,8 +52,8 @@ export default {
     })
 
     onMounted(async () => {
-      const { data } = await getHomeRequest()
-      const { carousels, hotGoodses, newGoodses, recommendGoodses } = data
+      const {data} = await getHomeRequest()
+      const {carousels, hotGoodses, newGoodses, recommendGoodses} = data
 
       state.swiperList = carousels.map((item) => {
         return {
@@ -70,17 +72,13 @@ export default {
       state.loading = false
     })
 
-    const handToProduct = (id) => {
-      router.push({ path: `/product/${id}` })
+    const handToProduct = (id: string) => {
+      router.push({path: `/product/${id}`})
     }
 
-    return { ...toRefs(state), handToProduct }
-  },
-
-  methods: {
-    formatGoods(goods) {
+    const formatGoods = (goods) => {
       return goods.map((item) => {
-        const { goodsId, goodsCoverImg, goodsIntro, goodsName, sellingPrice, tag } = item
+        const {goodsId, goodsCoverImg, goodsIntro, goodsName, sellingPrice, tag} = item
 
         return {
           id: goodsId,
@@ -92,8 +90,10 @@ export default {
           tag,
         }
       })
-    },
-  },
+    }
+
+    return {...toRefs(state), handToProduct}
+  }
 }
 </script>
 

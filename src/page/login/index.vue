@@ -50,7 +50,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import VerificationImg from '/cpn/VerificationImg'
 import { reactive, ref, toRefs } from 'vue'
 import md5 from 'js-md5'

@@ -23,11 +23,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { onMounted, reactive, toRefs } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
-import { queryAddressListRequest } from '../../api/address'
+import { queryAddressListRequest } from 'api/address'
 
 export default {
   name: 'address',

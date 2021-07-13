@@ -20,7 +20,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import NavBar from '/cpn/NavBar'
 
 import { userInfoRequest } from '/@/api/user'
