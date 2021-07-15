@@ -8,7 +8,9 @@
 </template>
 
 <script lang="ts">
-import GoodsItem from './GoodsItem'
+import { Props } from "src/types/Props";
+import {PropType, SetupContext} from "vue";
+import GoodsItem from './GoodsItem/index'
 
 export default {
   name: 'GoodsList',
@@ -20,22 +22,17 @@ export default {
       type: String,
       default: 'title',
     },
+
     list: {
-      type: Array,
-      default: [
-        {
-          src: '',
-          name: '',
-          prince: '',
-        },
-      ],
+      type: Array as PropType<Props.Goods>,
+      default: [{ src: '', name: '', prince: '', },],
     },
   },
 
   components: { GoodsItem },
 
-  setup(prop, { emit }) {
-    const handToProduct = (id) => {
+  setup(props: any, { emit }: SetupContext) {
+    const handToProduct = (id: string) => {
       emit('on-goods-click', id)
     }
 

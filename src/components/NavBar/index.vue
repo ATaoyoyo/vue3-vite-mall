@@ -16,7 +16,7 @@ import { computed, onMounted, ref } from 'vue'
 import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
 
-import { getLocal } from '/@/utils'
+import { getLocal } from 'src/utils'
 
 export default {
   name: 'NavBar',

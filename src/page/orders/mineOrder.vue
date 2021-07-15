@@ -50,7 +50,7 @@
 <script lang="ts">
 import { onMounted, reactive, toRefs } from 'vue'
 
-import { queryOrderListRequest } from '../../api/order'
+import { queryOrderListRequest } from 'api/order'
 import { useRouter } from 'vue-router'
 
 export default {

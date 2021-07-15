@@ -8,9 +8,10 @@
 </template>
 
 <script lang="ts">
-import { Toast } from 'vant'
+import {Toast} from 'vant'
+import {defineComponent, SetupContext} from "vue";
 
-export default {
+export default defineComponent({
   name: 'Category',
 
   emits: ['on-category-item-click'],
@@ -19,13 +20,13 @@ export default {
     categoryList: {
       type: Array,
       default: [],
-      isRequire: true,
+      required: true,
     },
   },
 
   components: { [Toast.name]: Toast },
 
-  setup(prop, { emit }) {
+  setup(props, { emit }: SetupContext) {
     const handShowTip = () => {
       Toast('敬请期待！')
       emit('on-category-item-click')
@@ -33,7 +34,7 @@ export default {
 
     return { handShowTip }
   },
-}
+})
 </script>
 
 <style lang="less" scoped>

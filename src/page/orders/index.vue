@@ -55,7 +55,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { queryBuyCartItemIds } from '/@/api/cart'
 import { queryDefaultAddressRequest, queryAddressDetailRequest } from '/@/api/address'
 import { getLocal, setLocal } from '/@/utils'
-import { createOrderRequest, payOrderRequest } from '../../api/order'
+import { createOrderRequest, payOrderRequest } from 'api/order'
 
 export default {
   name: 'orders',

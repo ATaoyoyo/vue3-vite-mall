@@ -22,7 +22,7 @@
 <script lang="ts">
 import { onMounted, reactive, toRefs } from 'vue'
 
-import { getLocal } from '/@/utils'
+import { getLocal } from 'src/utils'
 
 export default {
   name: 'Header',
@@ -37,7 +37,7 @@ export default {
     onMounted(() => {
       const token = getLocal('token')
 
-      state.isLogin = token ? true : false
+      state.isLogin = !!token
     })
 
     return { ...toRefs(state) }

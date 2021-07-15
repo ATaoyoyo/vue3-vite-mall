@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import { tdist } from '../../data/address'
+import { tdist } from 'src/data/address'
 
 import { onMounted, reactive, toRefs } from 'vue'
 import { useRoute, useRouter } from 'vue-router'

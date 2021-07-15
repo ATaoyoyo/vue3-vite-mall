@@ -9,6 +9,8 @@
 </template>
 
 <script lang="ts">
+import {PropType, SetupContext} from "vue";
+
 export default {
   name: 'GoodsItem',
 
@@ -16,7 +18,7 @@ export default {
 
   props: {
     info: {
-      type: Object,
+      type: Object as PropType<Props.GoodsItem>,
       default: () => {
         return {
           src: '',
@@ -31,11 +33,11 @@ export default {
 
   computed: {
     formatSrc() {
-      return (src) => (src ? this.$filter.prefix(src) : '')
+      return (src: string): string => (src ? this.$filter.prefix(src) : '')
     },
   },
 
-  setup(prop, { emit }) {
+  setup(prop: any, { emit }: SetupContext) {
     const handToProduct = () => {
       emit('on-to-product', prop.info.id)
     }

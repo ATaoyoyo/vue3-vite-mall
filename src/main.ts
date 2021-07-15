@@ -47,7 +47,7 @@ import {
 } from 'vant'
 
 app.config.globalProperties.$filter = {
-  prefix(url: string) {
+  prefix(url: string): string {
     url = String(url)
     if (url && url.startsWith('http')) {
       return url

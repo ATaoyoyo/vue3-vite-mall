@@ -21,10 +21,10 @@
 
 <script lang="ts">
 import Header from 'cpn/Header'
-import Swiper from 'cpn/Swiper'
-import Category from 'cpn/Category'
-import GoodsList from 'cpn/GoodsList'
-import NavBar from 'cpn/NavBar'
+import Swiper from 'cpn/Swiper/index'
+import Category from 'cpn/Category/index'
+import GoodsList from 'cpn/GoodsList/index'
+import NavBar from 'cpn/NavBar/index'
 
 import {getHomeRequest} from 'api/home'
 import categoryList from 'src/data/category'

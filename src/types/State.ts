@@ -1,3 +1,3 @@
-interface State {
+export interface State {
   cartCount: number
 }

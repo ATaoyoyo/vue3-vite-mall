@@ -72,10 +72,10 @@
 </template>
 
 <script lang="ts">
-import NavBar from '/cpn/NavBar'
+import NavBar from 'cpn/NavBar'
 import { computed, onMounted, reactive, toRefs } from 'vue'
 
-import { getCartRequest, modifyGoodsRequest, deleteGoodsRequest } from '/@/api/cart'
+import { getCartRequest, modifyGoodsRequest, deleteGoodsRequest } from 'api/cart'
 import { Toast } from 'vant'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
