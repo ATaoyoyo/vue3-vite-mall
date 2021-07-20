@@ -63,11 +63,11 @@ export default {
         }
       })
 
-      state.newGoods = ctx.formatGoods(newGoodses)
+      state.newGoods = formatGoods(newGoodses)
 
-      state.hotGoods = ctx.formatGoods(hotGoodses)
+      state.hotGoods = formatGoods(hotGoodses)
 
-      state.recommends = ctx.formatGoods(recommendGoodses)
+      state.recommends = formatGoods(recommendGoodses)
 
       state.loading = false
     })
