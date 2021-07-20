@@ -52,9 +52,9 @@ import { computed, onMounted, reactive, toRefs } from 'vue'
 import { Toast } from 'vant'
 import { useRoute, useRouter } from 'vue-router'
 
-import { queryBuyCartItemIds } from '/@/api/cart'
-import { queryDefaultAddressRequest, queryAddressDetailRequest } from '/@/api/address'
-import { getLocal, setLocal } from '/@/utils'
+import { queryBuyCartItemIds } from 'api/cart'
+import { queryDefaultAddressRequest, queryAddressDetailRequest } from 'api/address'
+import { getLocal, setLocal } from 'src/utils'
 import { createOrderRequest, payOrderRequest } from 'api/order'
 
 export default {

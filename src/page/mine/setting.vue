@@ -26,8 +26,8 @@ import { onMounted, reactive, toRefs } from 'vue'
 import { Dialog, Toast } from 'vant'
 import md5 from 'js-md5'
 
-import { userInfoRequest, userLogoutRequest, editUserInfoRequest } from '/@/api/user'
-import { setLocal } from '/@/utils'
+import { userInfoRequest, userLogoutRequest, editUserInfoRequest } from 'api/user'
+import { setLocal } from 'src/utils'
 
 export default {
   name: 'setting',

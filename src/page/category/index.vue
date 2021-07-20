@@ -31,9 +31,9 @@
 </template>
 
 <script lang="ts">
-import NavBar from '/cpn/NavBar'
+import NavBar from 'cpn/NavBar'
 
-import { queryCategoryRequest } from '/@/api/product'
+import { queryCategoryRequest } from 'api/product'
 import { onMounted, reactive, toRefs } from 'vue'
 
 export default {

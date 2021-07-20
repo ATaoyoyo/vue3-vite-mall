@@ -51,13 +51,13 @@
 </template>
 
 <script lang="ts">
-import VerificationImg from '/cpn/VerificationImg'
+import VerificationImg from 'cpn/VerificationImg'
 import { reactive, ref, toRefs } from 'vue'
 import md5 from 'js-md5'
 import { Toast } from 'vant'
 
-import { loginRequest, registerRequest } from '/@/api/user'
-import { setLocal } from '/@/utils'
+import { loginRequest, registerRequest } from 'api/user'
+import { setLocal } from 'src/utils'
 
 export default {
   name: 'login',

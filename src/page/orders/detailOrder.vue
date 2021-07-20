@@ -90,7 +90,7 @@ import { useRoute } from 'vue-router'
 import { onMounted, reactive, toRefs } from 'vue'
 import { Dialog, Toast } from 'vant'
 
-import { queryOrderDetailRequest, cancelOrderRequest, payOrderRequest } from '/@/api/order'
+import { queryOrderDetailRequest, cancelOrderRequest, payOrderRequest } from 'api/order'
 
 export default {
   name: 'order-detail',

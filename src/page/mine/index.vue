@@ -21,9 +21,9 @@
 </template>
 
 <script lang="ts">
-import NavBar from '/cpn/NavBar'
+import NavBar from 'cpn/NavBar'
 
-import { userInfoRequest } from '/@/api/user'
+import { userInfoRequest } from 'api/user'
 import { onMounted, reactive, toRefs } from 'vue'
 
 export default {
