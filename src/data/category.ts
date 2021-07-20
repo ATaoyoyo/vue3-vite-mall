@@ -1,4 +1,12 @@
-export default [
+import internal from 'stream'
+
+interface ILink {
+  name: string
+  src: string
+  id: number
+}
+
+const categoryList:ILink[] =  [
   {
     name: '新蜂超市',
     src: 'https://s.yezgea02.com/1604041127880/%E8%B6%85%E5%B8%82%402x.png',
@@ -50,3 +58,6 @@ export default [
     id: 100010,
   },
 ]
+
+
+export default categoryList

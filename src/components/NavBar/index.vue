@@ -31,7 +31,7 @@ export default {
     const active = ref(0)
 
     const count = computed(() => {
-      return store.state.cartCount.count
+      return store.state.cartCount
     })
 
     onMounted(async () => {

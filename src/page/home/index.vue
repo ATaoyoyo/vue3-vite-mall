@@ -26,21 +26,19 @@ import Category from 'cpn/Category/index'
 import GoodsList from 'cpn/GoodsList/index'
 import NavBar from 'cpn/NavBar/index'
 
-import {getHomeRequest} from 'api/home'
 import categoryList from 'src/data/category'
+import { getHomeRequest } from 'api/home'
 
-import {getCurrentInstance, onMounted, reactive, toRefs} from 'vue'
-import {useRouter} from 'vue-router'
+import { onMounted, reactive, toRefs, defineComponent } from 'vue'
+import { useRouter } from 'vue-router'
 
-export default {
-
-
+export default defineComponent({
   name: 'home',
 
-  components: {GoodsList, Header, Swiper, Category, NavBar},
+  components: { GoodsList, Header, Swiper, Category, NavBar },
 
   setup() {
-    const {ctx} = getCurrentInstance()
+    // const {ctx} = getCurrentInstance()
     const router = useRouter()
     const state = reactive({
       swiperList: [],
@@ -52,8 +50,8 @@ export default {
     })
 
     onMounted(async () => {
-      const {data} = await getHomeRequest()
-      const {carousels, hotGoodses, newGoodses, recommendGoodses} = data
+      const { data } = await getHomeRequest()
+      const { carousels, hotGoodses, newGoodses, recommendGoodses } = data
 
       state.swiperList = carousels.map((item) => {
         return {
@@ -73,12 +71,12 @@ export default {
     })
 
     const handToProduct = (id: string) => {
-      router.push({path: `/product/${id}`})
+      router.push({ path: `/product/${id}` })
     }
 
     const formatGoods = (goods) => {
       return goods.map((item) => {
-        const {goodsId, goodsCoverImg, goodsIntro, goodsName, sellingPrice, tag} = item
+        const { goodsId, goodsCoverImg, goodsIntro, goodsName, sellingPrice, tag } = item
 
         return {
           id: goodsId,
@@ -92,9 +90,9 @@ export default {
       })
     }
 
-    return {...toRefs(state), handToProduct}
+    return { ...toRefs(state), handToProduct }
   }
-}
+})
 </script>
 
 <style lang="less" scoped>
