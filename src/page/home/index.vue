@@ -28,9 +28,42 @@ import NavBar from 'cpn/NavBar/index'
 
 import categoryList from 'src/data/category'
 import { getHomeRequest } from 'api/home'
+import { ILink } from "src/data/category";
 
 import { onMounted, reactive, toRefs, defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
+
+interface IGoods {
+  goodsId: string
+  goodsCoverImg: string
+  goodsIntro: string
+  goodsName: string
+  sellingPrice: string
+  tag: string
+}
+
+interface IGoodsRes {
+  id: string
+  src: string
+  name: string
+  prince: string
+  goodsIntro: string
+  tag: string
+}
+
+interface ICarousels {
+  carouselUrl: string
+  redirectUrl: string
+}
+
+interface IState {
+  swiperList: []
+  recommends: IGoodsRes[]
+  categoryList: ILink[]
+  newGoods: IGoodsRes[]
+  hotGoods: IGoodsRes[]
+  loading: boolean
+}
 
 export default defineComponent({
   name: 'home',
@@ -40,7 +73,7 @@ export default defineComponent({
   setup() {
     // const {ctx} = getCurrentInstance()
     const router = useRouter()
-    const state = reactive({
+    const state = reactive<IState>({
       swiperList: [],
       recommends: [],
       categoryList: categoryList,
@@ -53,7 +86,7 @@ export default defineComponent({
       const { data } = await getHomeRequest()
       const { carousels, hotGoodses, newGoodses, recommendGoodses } = data
 
-      state.swiperList = carousels.map((item) => {
+      state.swiperList = carousels.map((item: ICarousels) => {
         return {
           id: item.carouselUrl,
           src: item.carouselUrl,
@@ -74,10 +107,9 @@ export default defineComponent({
       router.push({ path: `/product/${id}` })
     }
 
-    const formatGoods = (goods) => {
-      return goods.map((item) => {
+    const formatGoods = (goods: IGoods[]) : IGoodsRes[] => {
+      return goods.map((item: IGoods) => {
         const { goodsId, goodsCoverImg, goodsIntro, goodsName, sellingPrice, tag } = item
-
         return {
           id: goodsId,
           // src: this.$filter.prefix(goodsCoverImg),

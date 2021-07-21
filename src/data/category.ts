@@ -1,6 +1,6 @@
 import internal from 'stream'
 
-interface ILink {
+export interface ILink {
   name: string
   src: string
   id: number
