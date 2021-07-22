@@ -52,14 +52,22 @@
 
 <script lang="ts">
 import VerificationImg from 'cpn/VerificationImg'
-import { reactive, ref, toRefs } from 'vue'
+import { reactive, ref, toRefs, defineComponent } from 'vue'
 import md5 from 'js-md5'
 import { Toast } from 'vant'
 
 import { loginRequest, registerRequest } from 'api/user'
 import { setLocal } from 'src/utils'
 
-export default {
+interface IValue {
+  username: string
+  password: string
+  verificationCode: string
+}
+
+type Verification = InstanceType<typeof VerificationImg>
+
+export default defineComponent({
   name: 'login',
 
   components: { VerificationImg },
@@ -72,7 +80,8 @@ export default {
       register: false,
     })
 
-    const verifyRef = ref(null)
+    const verifyRef = ref()
+    console.log(verifyRef.value);
 
     const changeSubmitType = () => {
       state.register = !state.register
@@ -82,7 +91,7 @@ export default {
       verifyRef.value.handDraw()
     }
 
-    const onRegisterOrLogin = async (value) => {
+    const onRegisterOrLogin = async (value: IValue) => {
       const { username, password, verificationCode } = value
       const imgCode = verifyRef.value.imgCode
 
@@ -113,7 +122,7 @@ export default {
 
     return { ...toRefs(state), verifyRef, onRegisterOrLogin, changeSubmitType }
   },
-}
+})
 </script>
 
 <style lang="less" scoped>

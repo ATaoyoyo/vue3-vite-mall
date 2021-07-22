@@ -1,13 +1,13 @@
 <template>
   <div class="VerificationImg">
-    <canvas ref="verify" :width="width" :height="height" @click="handDraw" />
+    <canvas id="canvas" ref="verify" :width="width" :height="height" @click="handDraw" />
   </div>
 </template>
 
 <script lang="ts">
-import { onMounted, reactive, ref, toRefs } from 'vue'
+import { onMounted, reactive, ref, toRefs , defineComponent} from 'vue'
 
-export default {
+export default defineComponent({
   name: 'VerificationImg',
 
   components: {},
@@ -20,7 +20,7 @@ export default {
       imgCode: '',
     })
 
-    const verify = ref(null)
+    const verify = ref<HTMLCanvasElement>(document.getElementById('canvas') as HTMLCanvasElement)
 
     onMounted(() => {
       state.imgCode = draw()
@@ -30,11 +30,11 @@ export default {
       state.imgCode = draw()
     }
 
-    const randomNumber = (min, max) => {
-      return parseInt(Math.random() * (max - min) + min)
+    const randomNumber = (min: number, max: number) => {
+      return Math.random() * (max - min) + min
     }
 
-    const randomColor = (min, max) => {
+    const randomColor = (min: number, max: number) => {
       const r = randomNumber(min, max)
       const g = randomNumber(min, max)
       const b = randomNumber(min, max)
@@ -43,7 +43,7 @@ export default {
     }
 
     const draw = () => {
-      const ctx = verify.value.getContext('2d')
+      const ctx = verify.value.getContext('2d') as CanvasRenderingContext2D
 
       ctx.fillStyle = randomColor(180, 230)
 
@@ -113,12 +113,13 @@ export default {
 
     return { ...toRefs(state), handDraw, verify }
   },
-}
+})
 </script>
 
 <style lang="less" scoped>
 .VerificationImg {
   height: 40px;
+
   canvas {
     cursor: pointer;
   }

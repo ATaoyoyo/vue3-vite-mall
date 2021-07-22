@@ -45,17 +45,17 @@
 </template>
 
 <script lang="ts">
-import Swiper from '/cpn/Swiper'
+import Swiper from 'cpn/Swiper'
 
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
-import { computed, onMounted, reactive, toRefs } from 'vue'
+import { computed, onMounted, reactive, toRefs, defineComponent } from 'vue'
 
-import { productDetail } from '/@/api/product'
-import { addCartRequest } from '/@/api/cart'
+import { productDetail } from 'api/product'
+import { addCartRequest } from 'api/cart'
 import { Toast } from 'vant'
 
-export default {
+export default defineComponent({
   name: 'product',
 
   components: { Swiper },
@@ -66,7 +66,7 @@ export default {
     const store = useStore()
 
     const state = reactive({
-      productDetail: {},
+      productDetail: { goodsId: '' },
     })
 
     const count = computed(() => {
@@ -76,9 +76,10 @@ export default {
     onMounted(async () => {
       const { id } = route.params
 
-      const { data } = await productDetail(id)
+      const { data } = await productDetail(id as string)
 
-      data.goodsCarouselList = data.goodsCarouselList.map((item, index) => {
+      data.goodsCarouselList = data.goodsCarouselList.map((item: any, index: number) => {
+        console.log(item);
         return { src: item, id: index, url: '' }
       })
 
@@ -111,7 +112,7 @@ export default {
 
     return { ...toRefs(state), handToAddCart, handService, handToBuy, count }
   },
-}
+})
 </script>
 
 <style lang="less" scoped>

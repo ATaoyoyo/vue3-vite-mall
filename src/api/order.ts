@@ -2,7 +2,7 @@ import request from './index'
 
 type CreateOrder = {
   addressId: string
-  cartItemIds: string
+  cartItemIds: string[]
 }
 export const createOrderRequest = (params: CreateOrder) => {
   return request.post('/saveOrder', params)
@@ -12,7 +12,7 @@ type PayOrder = {
   orderNo: string
   payType: string
 }
-export const payOrderRequest = (params: PayOrder) => {
+export const payOrderRequest = (params: PayOrder): Promise<{resultCode: number}> => {
   return request.get('/paySuccess', {params})
 }
 
@@ -28,6 +28,6 @@ export const queryOrderDetailRequest = (params: string) => {
   return request.get(`/order/${params}`)
 }
 
-export const cancelOrderRequest = (params: string) => {
+export const cancelOrderRequest = (params: string): Promise<{resultCode: number}> => {
   return request.put(`/order/${params}/cancel`)
 }

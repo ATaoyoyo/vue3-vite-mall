@@ -24,9 +24,9 @@
 import NavBar from 'cpn/NavBar'
 
 import { userInfoRequest } from 'api/user'
-import { onMounted, reactive, toRefs } from 'vue'
+import { onMounted, reactive, toRefs, defineComponent } from 'vue'
 
-export default {
+export default defineComponent({
   name: 'mine',
 
   components: { NavBar },
@@ -45,7 +45,7 @@ export default {
 
     return { ...toRefs(state) }
   },
-}
+})
 </script>
 
 <style lang="less" scoped>

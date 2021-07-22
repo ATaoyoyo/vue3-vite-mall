@@ -99,12 +99,12 @@ export default {
       initOrderList()
     }
 
-    const handChangeTab = (name) => {
+    const handChangeTab = (name: string) => {
       state.status = name
       handRefresh()
     }
 
-    const handToDetail = (id) => {
+    const handToDetail = (id: string) => {
       router.push({ name: 'detail-order', query: { id } })
     }
 

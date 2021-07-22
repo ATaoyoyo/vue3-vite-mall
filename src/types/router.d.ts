@@ -4,5 +4,6 @@ import 'vue-router'
 declare module 'vue-router' {
   interface RouteMeta {
     index: index
+    id: string
   }
 }

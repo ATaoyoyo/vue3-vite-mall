@@ -31,9 +31,9 @@
 </template>
 
 <script lang="ts">
-import { reactive, toRefs } from 'vue'
+import { reactive, toRefs, defineComponent } from 'vue'
 
-export default {
+export default defineComponent( {
   name: 'product-list',
 
   components: {},
@@ -61,7 +61,7 @@ export default {
 
     return { ...toRefs(state), handSearch }
   },
-}
+})
 </script>
 
 <style lang="less" scoped>

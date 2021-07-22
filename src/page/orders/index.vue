@@ -39,7 +39,7 @@
     >
       <div :style="{ width: '90%', margin: '0 auto', padding: '50px 0' }">
         <van-button :style="{ marginBottom: '10px' }" color="#1989fa" block @click="handPayOrder(1)"
-          >支付宝支付
+        >支付宝支付
         </van-button>
         <van-button color="#4fc08d" block @click="handPayOrder(2)">微信支付</van-button>
       </div>
@@ -57,6 +57,7 @@ import { queryDefaultAddressRequest, queryAddressDetailRequest } from 'api/addre
 import { getLocal, setLocal } from 'src/utils'
 import { createOrderRequest, payOrderRequest } from 'api/order'
 
+
 export default {
   name: 'orders',
 
@@ -67,7 +68,7 @@ export default {
     const router = useRouter()
 
     const state = reactive({
-      address: {},
+      address: { addressId: '' },
       cartList: [],
       orderNo: '',
       showPay: false,
@@ -79,7 +80,9 @@ export default {
 
     const computedTotalPrice = computed(() => {
       let price = 0
-      state.cartList.forEach((item) => {
+      state.cartList.forEach((item: {
+        sellingPrice: number, goodsCount: number
+      }) => {
         price += item.sellingPrice * item.goodsCount
       })
 
@@ -92,14 +95,14 @@ export default {
       const { cartItemIds, addressId } = route.query
 
       const _cartItemIds = cartItemIds
-        ? JSON.parse(cartItemIds)
+        ? JSON.parse(cartItemIds as string)
         : JSON.parse(getLocal('cartItemIds'))
 
       setLocal('cartItemIds', JSON.stringify(_cartItemIds))
 
       const { data: list } = await queryBuyCartItemIds({ cartItemIds: _cartItemIds.join(',') })
       const { data: address } = addressId
-        ? await queryAddressDetailRequest(addressId)
+        ? await queryAddressDetailRequest(addressId as string)
         : await queryDefaultAddressRequest()
 
       if (!address) {
@@ -132,7 +135,7 @@ export default {
       state.showPay = true
     }
 
-    const handPayOrder = async (type) => {
+    const handPayOrder = async (type: string) => {
       const params = { orderNo: state.orderNo, payType: type }
       await payOrderRequest(params)
 

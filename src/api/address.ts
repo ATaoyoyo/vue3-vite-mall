@@ -14,8 +14,8 @@ export const queryDefaultAddressRequest = (params?: string) => {
   return request.get('/address/default')
 }
 
-export const queryAddressListRequest = () => {
-  return request.get('/address', {data: {pageNumber: 1, pageSize: 1000}})
+export const queryAddressListRequest = (): Promise<{ data: [] }> => {
+  return request.get('/address', { data: { pageNumber: 1, pageSize: 1000 } })
 }
 
 export const queryAddressDetailRequest = (params: string) => {

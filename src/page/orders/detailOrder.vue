@@ -78,7 +78,7 @@
           支付宝支付
         </van-button>
         <van-button color="#4fc08d" block @click="handlePayOrder(orderDetail.orderNo, 2)"
-          >微信支付
+        >微信支付
         </van-button>
       </div>
     </van-popup>
@@ -112,7 +112,7 @@ export default {
     const initOrderDetail = async () => {
       const { id } = route.query
 
-      const { data } = await queryOrderDetailRequest(id)
+      const { data } = await queryOrderDetailRequest(id as string)
 
       state.orderDetail = data
     }
@@ -121,7 +121,7 @@ export default {
       state.showPay = true
     }
 
-    const handleCancelOrder = (id) => {
+    const handleCancelOrder = (id: string) => {
       Dialog.confirm({ title: '确定取消订单？' }).then(async () => {
         const { resultCode } = await cancelOrderRequest(id)
 
@@ -131,7 +131,7 @@ export default {
       })
     }
 
-    const handlePayOrder = async (id, type) => {
+    const handlePayOrder = async (id: string, type: string) => {
       state.showPay = false
       Toast.loading({ message: '支付中...' })
       const params = { orderNo: id, payType: type }

@@ -22,14 +22,14 @@
 </template>
 
 <script lang="ts">
-import { onMounted, reactive, toRefs } from 'vue'
+import { defineComponent, onMounted, reactive, toRefs } from 'vue'
 import { Dialog, Toast } from 'vant'
 import md5 from 'js-md5'
 
 import { userInfoRequest, userLogoutRequest, editUserInfoRequest } from 'api/user'
 import { setLocal } from 'src/utils'
 
-export default {
+export default defineComponent( {
   name: 'setting',
 
   components: {},
@@ -57,6 +57,7 @@ export default {
       const params = {
         introduceSign: state.introduceSign,
         nickName: state.nickName,
+        passwordMd5: ''
       }
       if (state.password) {
         params.passwordMd5 = md5(state.password)
@@ -83,7 +84,7 @@ export default {
       handLogout,
     }
   },
-}
+})
 </script>
 
 <style lang="less" scoped>

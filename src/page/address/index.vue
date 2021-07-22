@@ -29,6 +29,31 @@ import { useRoute, useRouter } from 'vue-router'
 
 import { queryAddressListRequest } from 'api/address'
 
+interface IAddress {
+  addressId: string
+  userName: string
+  userPhone: string
+  provinceName: string
+  cityName: string
+  regionName: string
+  detailAddress: string
+  defaultFlag: string
+}
+
+interface IAddressRes {
+  id: string,
+  name: string,
+  tel: string,
+  address: string,
+  isDefault: boolean
+}
+
+interface IReactive {
+  list: IAddressRes[]
+  chosenAddressId: string
+  from: string
+}
+
 export default {
   name: 'address',
 
@@ -38,10 +63,10 @@ export default {
     const route = useRoute()
     const router = useRouter()
 
-    const state = reactive({
+    const state = reactive<IReactive>({
       chosenAddressId: '',
       list: [],
-      from: route.query.from,
+      from: route.query.from as string,
     })
 
     onMounted(() => {
@@ -52,7 +77,7 @@ export default {
       const { data } = await queryAddressListRequest()
       if (!data) return
 
-      state.list = data.map((item) => {
+      state.list = data.map<IAddressRes>((item: IAddress) => {
         return {
           id: item.addressId,
           name: item.userName,
@@ -67,14 +92,14 @@ export default {
       router.push({ name: 'address-edit', query: { type: 'add', from: state.from } })
     }
 
-    const handEditAddress = (item) => {
+    const handEditAddress = (item: { id: string }) => {
       router.push({
         name: 'address-edit',
         query: { type: 'edit', addressId: item.id, from: state.from },
       })
     }
 
-    const handSelectAddress = (item) => {
+    const handSelectAddress = (item: { id: string }) => {
       router.push({ name: 'create-order', query: { addressId: item.id, from: state.from } })
     }
 

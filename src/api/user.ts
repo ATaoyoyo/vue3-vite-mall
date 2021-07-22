@@ -12,7 +12,7 @@ export const userInfoRequest = () => {
   return request.get('/user/info')
 }
 
-export const userLogoutRequest = () => {
+export const userLogoutRequest = (): Promise<{ resultCode: number }> => {
   return request.post('/user/logout')
 }
 
